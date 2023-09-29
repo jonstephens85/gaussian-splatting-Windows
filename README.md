@@ -109,7 +109,7 @@ conda env create --file environment.yml --prefix <Drive>/<env_path>/gaussian_spl
 conda activate <Drive>/<env_path>/gaussian_splatting
 ```
 
-## Preparing Images From Your Own Scenes
+## Preparing Images From Your Own Scenes (Colmap)
 
 Our COLMAP loaders expect the following dataset structure in the source path location:
 
@@ -178,6 +178,30 @@ python convert.py -s <location> --skip_matching [--resize] #If not resizing, Ima
 </details>
 <br>
 
+## Preparing Images From Your Own Scenes (Agisoft Metashape Pro)
+
+![Metashape export scene](assets/metashape.png)
+
+1) **Add Photos** to Metashape project
+2) **Align Photos**
+3) Download script [export_for_gaussian_splatting.py](https://github.com/agisoft-llc/metashape-scripts/blob/master/src/export_for_gaussian_splatting.py) and press ```Ctrl+R```
+4) Specify path to the downloaded script and press **OK**
+5) Press **Scripts**
+6) Press **Export Colmap project (for Gaussian Splatting)**
+7) Press **Export**
+
+Cameras images and alignment will be exported in **Colmap dataset format** to the specified directory. This directory can be used in the training (see **[Running](#running)** section below):
+
+```shell
+python train.py -s <path to the èxported COLMAP dataset> -r 1
+```
+
+Note ```-r 1``` argument - thanks to it, camera images will be used without downscale. Otherwise, training will be performed on downscaled images:
+
+```
+[ INFO ] Encountered quite large input images (>1.6K pixels width), rescaling to 1.6K.
+ If this is not desired, please explicitly specify '--resolution/-r' as 1
+```
 
 ## Optimizer
 
