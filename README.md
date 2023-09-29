@@ -196,7 +196,7 @@ Cameras images and alignment will be exported in **Colmap dataset format** to th
 python train.py -s <path to the èxported COLMAP dataset> -r 1
 ```
 
-Note ```-r 1``` argument - thanks to it, camera images will be used without downscale. Without it - training will be performed on downscaled images:
+Note ```-r 1``` argument - thanks to it, camera images will be used without downscale. Otherwise, training will be performed on downscaled images:
 
 ```
 [ INFO ] Encountered quite large input images (>1.6K pixels width), rescaling to 1.6K.
