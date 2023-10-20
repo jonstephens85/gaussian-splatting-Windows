@@ -2,14 +2,11 @@
 
 ### Read first
 __This is a forked Windows Installation Tutorial and the main codes will not be updated__
-This forked GitHub project is intented for folks who have little to know command-line knowledge and want to install, train, and view 3D Gaussian Splatting. If you have used Instant NGP, Nerftudio, or other similar command-line based radiance field projects, most likely you have already installed some or all of the depedencies required for this project.
+This forked GitHub project is intended for folks who have little to no command-line knowledge and want to install, train, and view 3D Gaussian Splatting. If you have used Instant NGP, Nerftudio, or other similar command-line based radiance field projects, most likely you have already installed some or all of the dependencies required for this project.
 
-I created a <a href="https://youtu.be/UXtuigy_wYc?si=93d4d1iP30NMgfYm" target="_blank">walkthrough video</a>  to compliment the installation instructions. You can watch it independently or with this project page as reference. Please follow my YT channel for additional updates. Now let's get 3D Gaussian Splatting!
+I created a <a href="https://youtu.be/UXtuigy_wYc?si=93d4d1iP30NMgfYm" target="_blank">walkthrough video</a> to complement the installation instructions. You can watch it independently or with this project page as reference. Please follow my YT channel for additional updates. Now let's get 3D Gaussian Splatting!
 
 The section below is from the original GitHub page. Jump down to [Overview](#overview) to get started. <br>
-<br>
-<br>
-
 
 # About 3D Gaussian Splatting for Real-Time Radiance Field Rendering
 Bernhard Kerbl*, Georgios Kopanas*, Thomas Leimkühler, George Drettakis (* indicates equal contribution)<br>
@@ -26,7 +23,7 @@ This repository contains the official authors implementation associated with the
 <a href="https://www.mpi-inf.mpg.de"><img height="100" src="assets/logo_mpi.png"> </a> 
 <a href="https://team.inria.fr/graphdeco/"> <img style="width:100%;" src="assets/logo_graphdeco.png"></a>
 
-Abstract: *Radiance Field methods have recently revolutionized novel-view synthesis of scenes captured with multiple photos or videos. However, achieving high visual quality still requires neural networks that are costly to train and render, while recent faster methods inevitably trade off speed for quality. For unbounded and complete scenes (rather than isolated objects) and 1080p resolution rendering, no current method can achieve real-time display rates. We introduce three key elements that allow us to achieve state-of-the-art visual quality while maintaining competitive training times and importantly allow high-quality real-time (≥ 30 fps) novel-view synthesis at 1080p resolution. First, starting from sparse points produced during camera calibration, we represent the scene with 3D Gaussians that preserve desirable properties of continuous volumetric radiance fields for scene optimization while avoiding unnecessary computation in empty space; Second, we perform interleaved optimization/density control of the 3D Gaussians, notably optimizing anisotropic covariance to achieve an accurate representation of the scene; Third, we develop a fast visibility-aware rendering algorithm that supports anisotropic splatting and both accelerates training and allows realtime rendering. We demonstrate state-of-the-art visual quality and real-time rendering on several established datasets.*
+Abstract: *Radiance Field methods have recently revolutionized novel-view synthesis of scenes captured with multiple photos or videos. However, achieving high visual quality still requires neural networks that are costly to train and render, while recent faster methods inevitably trade off speed for quality. For unbounded and complete scenes (rather than isolated objects) and 1080p resolution rendering, no current method can achieve real-time display rates. We introduce three key elements that allow us to achieve state-of-the-art visual quality while maintaining competitive training times and importantly allow high-quality real-time (≥ 30 fps) novel-view synthesis at 1080p resolution. First, starting from sparse points produced during camera calibration, we represent the scene with 3D Gaussians that preserve desirable properties of continuous volumetric radiance fields for scene optimization while avoiding unnecessary computation in empty space; Second, we perform interleaved optimization/density control of the 3D Gaussians, notably optimizing anisotropic covariance to achieve an accurate representation of the scene; Third, we develop a fast visibility-aware rendering algorithm that supports anisotropic splatting and both accelerates training and allows real-time rendering. We demonstrate state-of-the-art visual quality and real-time rendering on several established datasets.*
 
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
@@ -44,7 +41,6 @@ Abstract: *Radiance Field methods have recently revolutionized novel-view synthe
   </div>
 </section>
 
-
 ## Funding and Acknowledgments
 
 This research was funded by the ERC Advanced grant FUNGRAPH No 788065. The authors are grateful to Adobe for generous donations, the OPAL infrastructure from Université Côte d’Azur and for the HPC resources from GENCI–IDRIS (Grant 2022-AD011013409). The authors thank the anonymous reviewers for their valuable feedback, P. Hedman and A. Tewari for proofreading earlier drafts also T. Müller, A. Yu and S. Fridovich-Keil for helping with the comparisons.
@@ -57,28 +53,25 @@ The codebase has 4 main components:
 - A network viewer that allows to connect to and visualize the optimization process **(ommitted from this fork for simplicity, please see original repo)**
 - An OpenGL-based real-time viewer to render trained models in real-time.
 
-
 Here is what the workflow looks like: <br>
 ![Workflow](assets/Workflow.png)
 
-
 ## Requirements
-This is the hardware and software required to run 3D Gaussian Splatting for Real-Time Radiance Fields. Technically, the viewer has much smaller requirements compared to the the optimizer. I decided to list the 
+This is the hardware and software required to run 3D Gaussian Splatting for Real-Time Radiance Fields. Technically, the viewer has much smaller requirements compared to the optimizer. 
 
 ### Hardware
 - An NVIDIA GPU with 24GB VRAM* or more. Preferably an RTX 3090 or better. _*Future updates to these instructions will have options to modify training for GPUs with less VRAM such as a 3080._
 
 ### Software
-This is the sofware dependencies you will need installed prior to installing the project. Many of these dependencies are shared with other NeRF projects.
+This is the software dependencies you will need installed prior to installing the project. Many of these dependencies are shared with other NeRF projects.
 - __Git__ - You will need this to pull the code from GitHub. You can download it [here ](https://git-scm.com/downloads). Follow default installation instructions. You can test to see if you have it already installed by typing ```git --version``` into command prompt
 - __Conda__ - I recommend using [Anaconda](https://www.anaconda.com/download) because it's easy to install and manage environments in the future. [MiniConda](https://docs.conda.io/en/latest/miniconda.html) is a great lightweight alternative.
 - __CUDA Toolkit__ - this was tested with 11.8. Ensure you are not running 11.6 or 12+. You can download CUDA Toolkit [here](https://developer.nvidia.com/cuda-toolkit-archive) You can check which version of CUDA Toolkit you have installed by typing ```nvcc --version``` into command prompt.
 - __Visual Studio 2019 or newer__ - You can download and install it [here](https://visualstudio.microsoft.com/vs/older-downloads/). Make sure you add __Desktop Development with C++__ when installing <br>
 ![VS_Option](assets/VS_Option.png)
 - __COLMAP__ - Use the Windows binary, it's easy! You can download it [here](https://github.com/colmap/colmap/releases)
-- __ImageMagik__ - This is for preparing your images. Download it [here](https://imagemagick.org/script/download.php)
+- __ImageMagick__ - This is for preparing your images. Download it [here](https://imagemagick.org/script/download.php)
 - __FFMPEG__ - Use this to extract images from video. Download it [here](https://ffmpeg.org/download.html)
-
 
 ## Cloning the Repository
 You will need to pull a copy of the code from GitHub. You will do this by using Git which was pre-installed during the dependencies section of this tutorial. You can also use GitHub desktop to clone the repository. Follow these steps to clone the repository: <br>
@@ -88,11 +81,11 @@ You will need to pull a copy of the code from GitHub. You will do this by using 
 
 ```git clone https://github.com/graphdeco-inria/gaussian-splatting --recursive```
 
-The folder will download to the root of our command line prompt with the name "Gaussian-Splatting". Typically in your ```C:User/<username>``` folder. For example, on my PC the folder is now located at C:User/Jonat/Guassian-Splatting
+The folder will download to the root of our command line prompt with the name "Gaussian-Splatting". Typically in your ```C:User/<username>``` folder. For example, on my PC the folder is now located at C:User/Jonat/Gaussian-Splatting
 
 ## Installing the Optimizer
 
-To install the code that you pulled from GitHub, you will need to create a Conda environment that includes all of the compailed code for running. Open command prompt and enter these lines below one at a time. The second line will compile the code which can take 10 minutes or longer. The last line will "activate" the conda environment. You will need to enter ```conda activate gaussian_splatting``` at the start of each session you plan to optimize 3D Gaussian Splatting.
+To install the code that you pulled from GitHub, you will need to create a Conda environment that includes all of the compiled code for running. Open command prompt and enter these lines below one at a time. The second line will compile the code which can take 10 minutes or longer. The last line will "activate" the conda environment. You will need to enter ```conda activate gaussian_splatting``` at the start of each session you plan to optimize 3D Gaussian Splatting.
 
 ```shell
 SET DISTUTILS_USE_SDK=1
@@ -109,7 +102,7 @@ conda env create --file environment.yml --prefix <Drive>/<env_path>/gaussian_spl
 conda activate <Drive>/<env_path>/gaussian_splatting
 ```
 
-## Preparing Images From Your Own Scenes
+## Preparing Images from Your Own Scenes
 
 Our COLMAP loaders expect the following dataset structure in the source path location:
 
@@ -178,19 +171,15 @@ python convert.py -s <location> --skip_matching [--resize] #If not resizing, Ima
 </details>
 <br>
 
-
 ## Optimizer
 
-The optimizer uses PyTorch and CUDA extensions in a Python environment to produce trained models. These trained models are what you view in the real-time viewer. This is where you "processes your dataset" into 3D Guassian Splats.
-
+The optimizer uses PyTorch and CUDA extensions in a Python environment to produce trained models. These trained models are what you view in the real-time viewer. This is where you "processes your dataset" into 3D Gaussian Splats.
 
 ### Running
 
-To run the optimizer, ensure you have the Conda environment active. You should see (gaussian_splatting) at the front of your command prompt string. If you do not see it, use this command to activate the Conda environement ```conda activate gaussian_splatting```
+To run the optimizer, ensure you have the Conda environment active. You should see (gaussian_splatting) at the front of your command prompt string. If you do not see it, use this command to activate the Conda environment ```conda activate gaussian_splatting```
 
- have pathed to the Gaussian-splatting folder within command promps
-
-, simply use
+Once you have pathed to the Gaussian-splatting folder within command prompts, simply use
 
 ```shell
 python train.py -s <path to COLMAP or NeRF Synthetic dataset>
@@ -220,7 +209,7 @@ python train.py -s <path to COLMAP or NeRF Synthetic dataset>
   #### --convert_cov3D_python
   Flag to make pipeline compute forward and backward of the 3D covariance with PyTorch instead of ours.
   #### --debug
-  Enables debug mode if you experience erros. If the rasterizer fails, a ```dump``` file is created that you may forward to us in an issue so we can take a look.
+  Enables debug mode if you experience errors. If the rasterizer fails, a ```dump``` file is created that you may forward to us in an issue so we can take a look.
   #### --debug_from
   Debugging is **slow**. You may specify an iteration (starting from 0) after which the above debugging becomes active.
   #### --iterations
@@ -273,32 +262,26 @@ python train.py -s <path to COLMAP or NeRF Synthetic dataset>
 </details>
 <br>
 
-Note that similar to MipNeRF360, we target images at resolutions in the 1-1.6K pixel range. For convenience, arbitrary-size inputs can be passed and will be automatically resized if their width exceeds 1600 pixels. We recommend to keep this behavior, but you may force training to use your higher-resolution images by setting ```-r 1```.
+Note that similar to MipNeRF360, we target images at resolutions in the 1-1.6K pixel range. For convenience, arbitrary-size inputs can be passed and will be automatically resized if their width exceeds 1600 pixels. We recommend keeping this behavior, but you may force training to use your higher-resolution images by setting ```-r 1```.
 
 The MipNeRF360 scenes are hosted by the paper authors [here](https://jonbarron.info/mipnerf360/). You can find our SfM data sets for Tanks&Temples and Deep Blending [here](https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/datasets/input/tandt_db.zip). If you do not provide an output model directory (```-m```), trained models are written to folders with randomized unique names inside the ```output``` directory. At this point, the trained models may be viewed with the real-time viewer (see further below).
-
 
 ## Interactive Viewers
 We provide two interactive viewers for our method: remote and real-time. Our viewing solutions are based on the [SIBR](https://sibr.gitlabpages.inria.fr/) framework, developed by the GRAPHDECO group for several novel-view synthesis projects.
 
-
 ### Pre-built Windows Binaries
 We provide pre-built binaries for Windows [here](https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/binaries/viewers.zip). We recommend using them on Windows for an efficient setup, since the building of SIBR involves several external dependencies that must be downloaded and compiled on-the-fly.
 
-Simply download the viewer.zip file from the links above and extact the 
-
+Simply download the viewer.zip file from the links above and extract the 
 
 ### Navigation in SIBR Viewers
-The SIBR interface provides several methods of navigating the scene. By default, you will be started with an FPS navigator, which you can control with ```W, A, S, D, Q, E``` for camera translation and ```I, K, J, L, U, O``` for rotation. Alternatively, you may want to use a Trackball-style navigator (select from the floating menu). You can also snap to a camera from the data set with the ```Snap to``` button or find the closest camera with ```Snap to closest```. The floating menues also allow you to change the navigation speed. You can use the ```Scaling Modifier``` to control the size of the displayed Gaussians, or show the initial point cloud.
-
+The SIBR interface provides several methods of navigating the scene. By default, you will be started with an FPS navigator, which you can control with ```W, A, S, D, Q, E``` for camera translation and ```I, K, J, L, U, O``` for rotation. Alternatively, you may want to use a Trackball-style navigator (select from the floating menu). You can also snap to a camera from the data set with the ```Snap to``` button or find the closest camera with ```Snap to closest```. The floating menus also allow you to change the navigation speed. You can use the ```Scaling Modifier``` to control the size of the displayed Gaussians, or show the initial point cloud.
 
 ### Running the Real-Time Viewer
 
 
 
-
 https://github.com/graphdeco-inria/gaussian-splatting/assets/40643808/0940547f-1d82-4c2f-a616-44eabbf0f816
-
 
 
 
@@ -313,7 +296,7 @@ It should suffice to provide the ```-m``` parameter pointing to a trained model 
 
 ![Teaser image](assets/select.png)
 
-In addition to the intial point cloud and the splats, you also have the option to visualize the Gaussians by rendering them as ellipsoids from the floating menu.
+In addition to the initial point cloud and the splats, you also have the option to visualize the Gaussians by rendering them as ellipsoids from the floating menu.
 SIBR has many other functionalities, please see the [documentation](https://sibr.gitlabpages.inria.fr/) for more details on the viewer, navigation options etc. There is also a Top View (available from the menu) that shows the placement of the input cameras and the original SfM point cloud; please note that Top View slows rendering when enabled. The real-time viewer also uses slightly more aggressive, fast culling, which can be toggled in the floating menu. If you ever encounter an issue that can be solved by turning fast culling off, please let us know.
 
 <details>
@@ -374,7 +357,6 @@ python nerfstudio/scripts/gaussian_splatting/render.py camera-path \
 ```
 
 
-
 ## Install Troubleshooting
 - If you encounter an error running train.py that states: ```ModuleNotFoundError: No module named 'diff_gaussian_rasterization'```, this means that you had an issue during the Optimizer install process. Try [installing the optimizer](#installing-the-optimizer) again. Take note of any specific errors and report them in the original GitHub [issues page](https://github.com/graphdeco-inria/gaussian-splatting/issues)
 - If it still doesn't work. Most likely the It says something about cl.exe missing. You can you try adding the visual studio path to your environment variables (your version number might differ); `C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\bin\Hostx64\x64` Then make sure you start a new conda prompt and cd to your repo location and try this;
@@ -390,20 +372,19 @@ I will make a tutorial video soon on how to troubleshoot common installation pro
 ## FAQ
 - *Where do I get data sets, e.g., those referenced in ```full_eval.py```?* The MipNeRF360 data set is provided by the authors of the original paper on the project site. Note that two of the data sets cannot be openly shared and require you to consult the authors directly. For Tanks&Temples and Deep Blending, please use the download links provided at the top of the page.
 
-
 - *How can I use this for a much larger dataset, like a city district?* The current method was not designed for these, but given enough memory, it should work out. However, the approach can struggle in multi-scale detail scenes (extreme close-ups, mixed with far-away shots). This is usually the case in, e.g., driving data sets (cars close up, buildings far away). For such scenes, you can lower the ```--position_lr_init```, ```--position_lr_final``` and ```--scaling_lr``` (x0.3, x0.1, ...). The more extensive the scene, the lower these values should be. Below, we use default learning rates (left) and ```--position_lr_init 0.000016 --scaling_lr 0.001"``` (right).
 
 | ![Default learning rate result](assets/worse.png "title-1") <!-- --> | <!-- --> ![Reduced learning rate result](assets/better.png "title-2") |
 | --- | --- |
 
-
 - *I don't have 24 GB of VRAM for training, what do I do?* The VRAM consumption is determined by the number of points that are being optimized, which increases over time. If you only want to train to 7k iterations, you will need significantly less. To do the full training routine and avoid running out of memory, you can increase the ```--densify_grad_threshold```, ```--densification_interval``` or reduce the value of ```--densify_until_iter```. Note however that this will affect the quality of the result. Also try setting ```--test_iterations``` to ```-1``` to avoid memory spikes during testing. If ```--densify_grad_threshold``` is very high, no densification should occur and training should complete if the scene itself loads successfully.
 
 - *24 GB of VRAM for reference quality training is still a lot! Can't we do it with less?* Yes, most likely. By our calculations it should be possible with **way** less memory (~8GB). If we can find the time we will try to achieve this. If some PyTorch veteran out there wants to tackle this, we look forward to your pull request!
-
 
 - *How can I use the differentiable Gaussian rasterizer for my own project?* Easy, it is included in this repo as a submodule ```diff-gaussian-rasterization```. Feel free to check out and install the package. It's not really documented, but using it from the Python side is very straightforward (cf. ```gaussian_renderer/__init__.py```).
 
 - *Wait, but ```<insert feature>``` isn't optimized and could be much better?* There are several parts we didn't even have time to think about improving (yet). The performance you get with this prototype is probably a rather slow baseline for what is physically possible.
 
 - *Something is broken, how did this happen?* We tried hard to provide a solid and comprehensible basis to make use of the paper's method. We have refactored the code quite a bit, but we have limited capacity to test all possible usage scenarios. Thus, if part of the website, the code or the performance is lacking, please create an issue. If we find the time, we will do our best to address it.
+
+
